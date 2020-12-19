@@ -1,0 +1,12 @@
+{% load random_numbers %}
+{% random_int as uuid%}
+    <label for="{{ uuid }}" id="l_{{ uuid }}">{% firstof widget.value widget.attrs.default '0' %}</label>
+    <input type="range"  id="{{ uuid }}"
+     class="form-control rangefield_field jsrange"
+     name="{{ widget.name }}"
+     min="{{ widget.attrs.min_value }}"
+     max="{{ widget.attrs.max_value }}"
+     value="{% firstof widget.value widget.attrs.default '0' %}"
+     step="{{ widget.attrs.step }}"
+     onchange="document.getElementById('l_{{ uuid }}').innerText=this.value;"
+     {% if widget.attrs.required %}required{% endif %} />
